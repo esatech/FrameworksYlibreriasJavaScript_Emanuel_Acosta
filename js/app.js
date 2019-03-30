@@ -29,18 +29,27 @@ $( document ).ready(function() {
 
   tituloAzul()
 
-  //inicia el juego y agrega caramelos aleatoreos
+  // inicia el juego
   $(".btn-reinicio").click(function(){
+    $(this).html("Reiniciar")
+    clearInterval(intervalo);
+    //clearInterval(eliminar);
+    //clearInterval(nuevosDulces);
+    clearInterval(tiempo);
+    borrartotal()
+
     intervalo=setInterval(function(){
       desplazamiento()
     },600);
-    $(this).html("Reiniciar")
+
     tiempo=setInterval(function(){
   		timer()
   	},1000);
 
+
   });
 
+  // Agrega caramelos aleatoreos
   function desplazamiento(){
     i=i+1
     var numero=0;
@@ -73,5 +82,12 @@ $( document ).ready(function() {
   		min=min-1;}
   	$("#timer").html("0"+min+":"+seg);
   };
+
+  // Borrar todo
+  function borrartotal(){
+  	for(var j=1;j<8;j++){
+  		$(".col-"+j).children("img").detach();}
+  };
+
 
 });
